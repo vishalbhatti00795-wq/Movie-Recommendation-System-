@@ -1,4 +1,5 @@
 # 🎬 CineMatch — Movie Recommendation System using NLP
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-View%20App-success?style=for-the-badge)](https://heart-disease-predictor-dfor.onrender.com/)
 
 CineMatch is a simple **content-based movie recommendation system** built as my first **Natural Language Processing (NLP)** project.
 
