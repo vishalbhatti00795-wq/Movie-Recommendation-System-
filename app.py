@@ -3,6 +3,8 @@ import pandas as pd
 import pickle
 import numpy as np
 from sklearn.metrics.pairwise import linear_kernel
+import os
+import urllib.request
 
 # ---------------------------------------------------------
 # PAGE CONFIG
@@ -261,18 +263,45 @@ st.markdown("""
 # ---------------------------------------------------------
 # LOAD MODEL FILES
 # ---------------------------------------------------------
+# ----------------------------------------------------
+# LOAD MODEL FILES
+# ----------------------------------------------------
+
+MODEL_BASE_URL = "https://huggingface.co/vishal2143/cinematch-model/resolve/main"
+
+
+def download_file(filename):
+    """Download model file from Hugging Face if it doesn't exist locally."""
+    
+    if not os.path.exists(filename):
+        url = f"{MODEL_BASE_URL}/{filename}"
+        
+        st.info(f"Downloading {filename}...")
+        urllib.request.urlretrieve(url, filename)
+    
+    return filename
+
+
 @st.cache_resource
 def load_model():
-    with open("df.pickle", "rb") as f:
+
+    # Download model files from Hugging Face
+    df_file = download_file("df.pickle")
+    indices_file = download_file("indices.pkl")
+    tfidf_file = download_file("tfidf.pkl")
+    tfidf_matrix_file = download_file("tfidf_matrix.pkl")
+
+    # Load model files
+    with open(df_file, "rb") as f:
         df = pickle.load(f)
 
-    with open("indices.pkl", "rb") as f:
+    with open(indices_file, "rb") as f:
         indices = pickle.load(f)
 
-    with open("tfidf.pkl", "rb") as f:
+    with open(tfidf_file, "rb") as f:
         tfidf = pickle.load(f)
 
-    with open("tfidf_matrix.pkl", "rb") as f:
+    with open(tfidf_matrix_file, "rb") as f:
         tfidf_matrix = pickle.load(f)
 
     return df, indices, tfidf, tfidf_matrix
