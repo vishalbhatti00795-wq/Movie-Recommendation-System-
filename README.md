@@ -369,6 +369,21 @@ Therefore, two users searching for the same movie will receive the same recommen
 
 ---
 
+---
+
+## 📦 Large Files & Model Files
+
+The original dataset and precomputed model files are **not included in this GitHub repository** because some of these files are too large for GitHub's standard file upload limits.
+
+The following files are excluded from the repository:
+
+```text
+Dataset/
+df.pickle
+indices.pkl
+tfidf.pkl
+tfidf_matrix.pkl
+
 ## 🎯 Project Objective
 
 The main objective of this project was to understand how Natural Language Processing can be used to solve a real-world problem.
